@@ -1,6 +1,6 @@
 {
 	"name": "remix-auth-trinsic",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"description": "A Remix Auth strategy for working with Trinsic to accept eIDs",
 	"license": "MIT",
 	"author": {
