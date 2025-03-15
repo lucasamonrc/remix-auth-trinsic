@@ -1,5 +1,8 @@
 # TrinsicStrategy
 
+[![Version](https://img.shields.io/npm/v/remix-auth-trinsic.svg)](https://www.npmjs.org/package/remix-auth-trinsic)
+[![Build Status](https://github.com/lucasamonrc/remix-auth-trinsic/actions/workflows/ci.yml/badge.svg)](https://github.com/lucasamonrc/remix-auth-trinsic/actions?query=branch%main)
+
 A Remix Auth strategy to work Trinsic's widget identity verification sessions
 
 ## Supported runtimes
