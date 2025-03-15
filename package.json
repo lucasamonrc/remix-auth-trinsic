@@ -32,7 +32,7 @@
 		"typecheck": "tsc --noEmit",
 		"quality": "biome check .",
 		"quality:fix": "biome check . --write --unsafe",
-		"exports": "bun run ./scripts/exports.ts",
+		"exports": "node ./scripts/exports.js",
 		"test": "vitest run",
 		"test:watch": "vitest"
 	},

@@ -7,15 +7,15 @@ updates:
     schedule:
       interval: "monthly"
     reviewers:
-      - "sergiodxa"
+      - "lucasamonrc"
     assignees:
-      - "sergiodxa"
+      - "lucasamonrc"
 
   - package-ecosystem: bun
     directory: /
     schedule:
       interval: "weekly"
     reviewers:
-      - "sergiodxa"
+      - "lucasamonrc"
     assignees:
-      - "sergiodxa"
+      - "lucasamonrc"
