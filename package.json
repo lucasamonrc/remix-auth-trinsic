@@ -1,23 +1,32 @@
 {
-	"name": "remix-auth-strategy-template",
+	"name": "remix-auth-trinsic",
 	"version": "0.0.0",
-	"description": "A description of the strategy",
+	"description": "A Remix Auth strategy for working with Trinsic to accept eIDs",
 	"license": "MIT",
-	"funding": ["https://github.com/sponsors/sergiodxa"],
 	"author": {
-		"name": "Sergio Xalambrí",
-		"email": "hello+oss@sergiodxa.com",
-		"url": "https://sergiodxa.com"
+		"name": "Lucas Castro",
+		"email": "hello+oss@lucasamonrc.dev",
+		"url": "https://lucasamonrc.dev"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/sergiodxa/remix-auth-strategy-template"
+		"url": "https://github.com/lucasamonrc/remix-auth-trinsic"
 	},
-	"homepage": "https://sergiodxa.github.io/remix-auth-strategy-template",
+	"homepage": "https://github.com/lucasamonrc/remix-auth-trinsic",
 	"bugs": {
-		"url": "https://github.com/sergiodxa/remix-auth-strategy-template/issues"
+		"url": "https://github.com/lucasamonrc/remix-auth-trinsic/issues"
 	},
-	"keywords": ["remix", "remix-auth", "auth", "authentication", "strategy"],
+	"keywords": [
+		"remix",
+		"remix-auth",
+		"auth",
+		"authentication",
+		"strategy",
+		"trinsic",
+		"eid",
+		"identity",
+		"verification"
+	],
 	"scripts": {
 		"build": "tsc",
 		"typecheck": "tsc --noEmit",
@@ -30,16 +39,20 @@
 	"engines": {
 		"node": ">=20.0.0"
 	},
-	"files": ["build", "package.json", "README.md"],
+	"files": [
+		"build",
+		"package.json",
+		"README.md"
+	],
 	"exports": {
 		".": "./build/index.js",
 		"./package.json": "./package.json"
 	},
 	"dependencies": {
+		"@trinsic/api": "^2.0.0-alpha2",
 		"react-router": "^7.0.2",
 		"remix-auth": "^4.0.0"
 	},
-	"peerDependencies": {},
 	"devDependencies": {
 		"@arethetypeswrong/cli": "^0.17.4",
 		"@biomejs/biome": "^1.8.3",
