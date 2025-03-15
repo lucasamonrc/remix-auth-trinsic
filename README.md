@@ -40,7 +40,7 @@ authenticator.use(
     {
       accessToken: process.env.TRINSIC_ACCESS_TOKEN,
       redirectUrl: "https://example.com/auth/callback",
-      providers: ["clear", "yoti", "ca-mdl"] // optional,
+      providers: ["clear", "yoti", "ca-mdl"], // optional
       knownIdentityData: { ... } // optional
     },
     async ({ results }) => {
