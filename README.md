@@ -1,37 +1,6 @@
-# Remix Auth - Strategy Template
+# TrinsicStrategy
 
-> A template for creating a new Remix Auth strategy.
-
-If you want to create a new strategy for Remix Auth, you could use this as a template for your repository.
-
-The repo installs the latest version of Remix Auth and do the setup for you to have tests, linting and typechecking.
-
-## How to use it
-
-1. In the `package.json` change `name` to your strategy name, also add a description and ideally an author, repository and homepage keys.
-2. In `src/index.ts` change the `MyStrategy` for the strategy name you want to use.
-3. Implement the strategy flow inside the `authenticate` method. Use `this.success` and `this.failure` to correctly send finish the flow.
-4. In `tests/index.test.ts` change the tests to use your strategy and test it. Inside the tests you have access to `jest-fetch-mock` to mock any fetch you may need to do.
-5. Once you are ready, set the secrets on Github
-   - `NPM_TOKEN`: The token for the npm registry
-   - `GIT_USER_NAME`: The git username you want the bump workflow to use in the commit.
-   - `GIT_USER_EMAIL`: The email you want the bump workflow to use in the commit.
-
-## Scripts
-
-- `build`: Build the project for production using the TypeScript compiler (strips the types).
-- `typecheck`: Check the project for type errors, this also happens in build but it's useful to do in development.
-- `lint`: Runs ESLint against the source codebase to ensure it pass the linting rules.
-- `test`: Runs all the test using Jest.
-
-## Documentations
-
-To facilitate creating a documentation for your strategy, you can use the following Markdown
-
-```markdown
-# Strategy Name
-
-<!-- Description -->
+A Remix Auth strategy to work Trinsic's widget identity verification sessions
 
 ## Supported runtimes
 
@@ -40,9 +9,79 @@ To facilitate creating a documentation for your strategy, you can use the follow
 | Node.js    | ✅          |
 | Cloudflare | ✅          |
 
-<!-- If it doesn't support one runtime, explain here why -->
-
 ## How to use
 
-<!-- Explain how to use the strategy, here you should tell what options it expects from the developer when instantiating the strategy -->
+This Strategy gives you back on the verify function Trinsic's `GetSessionResultResponse` data and the instance of the request.
+
+This let you use Trinsic's digital identity network to authenticate users. You'll obviously need an account with Trinsic and an app set up with them to use this strategy.
+
+First, install the strategy and Remix Auth.
+
+```bash
+$ npm install remix-auth remix-auth-trinsic
 ```
+
+Then, create an Authenticator instance.
+
+```ts
+import { Authenticator } from "remix-auth";
+import { User } from "~/models/user";
+
+export let authenticator = new Authenticator<User>();
+```
+
+And you can tell the authenticator to use the FormStrategy.
+
+```ts
+import { TrinsicStrategy } from "remix-auth-trinsic";
+
+authenticator.use(
+  new TrinsicStrategy<User>(
+    {
+      accessToken: process.env.TRINSIC_ACCESS_TOKEN,
+      redirectUrl: "https://example.com/auth/callback",
+      providers: ["clear", "yoti", "ca-mdl"] // optional,
+      knownIdentityData: { ... } // optional
+    },
+    async ({ results }) => {
+      const data = results.identityData
+
+      // process data to create/find a user
+
+      return user;
+    }
+  ),
+  // this is optional, but if you setup more than one Trinsic instance you will
+  // need to set a custom name to each one, by default is "trinsic"
+  "provider-name"
+);
+```
+
+Then you will need to setup your routes, you will need to call the `authenticate` method twice.
+
+First, you will call the `authenticate` method with the provider name you set in the authenticator.
+
+```ts
+export async function action({ request }: Route.ActionArgs) {
+  await authenticator.authenticate("provider-name", request);
+}
+```
+
+> [!NOTE]
+> This route can be an `action` or a `loader`, it depends if you trigger the flow doing a POST or GET request.
+
+This will start the verification flow and redirect the user to Trinsic. Once the user completes the identity verification, Trinsic will redirect the user back to your application redirect URL.
+
+You will now need a route on that URL to handle the callback from Trinsic.
+
+```ts
+export async function loader({ request }: Route.LoaderArgs) {
+  let user = await authenticator.authenticate("provider-name", request);
+  // now you have the user object with the data you returned in the verify function
+}
+```
+
+> [!NOTE]
+> This route must be a `loader` as the redirect will trigger a `GET` request.
+
+Once you have the `user` object returned by your strategy verify function, you can do whatever you want with that information. This can be storing the user in a session, creating a new user in your database, link the account to an existing user in your database, etc.

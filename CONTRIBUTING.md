@@ -2,12 +2,12 @@
 
 ## Setup
 
-Run `bun install` to install the dependencies.
+Run `npm install` to install the dependencies.
 
-Run the tests with `bun test`.
+Run the tests with `npm test`.
 
-Run the code quality checker with `bun run quality`.
+Run the code quality checker with `npm run quality`.
 
-Run the typechecker with `bun run typecheck`.
+Run the typechecker with `npm run typecheck`.
 
-Run the exports checker with `bun run exports`.
+Run the exports checker with `npm run exports`.
