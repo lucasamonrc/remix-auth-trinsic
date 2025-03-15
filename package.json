@@ -32,7 +32,9 @@
 		"typecheck": "tsc --noEmit",
 		"quality": "biome check .",
 		"quality:fix": "biome check . --write --unsafe",
-		"exports": "bun run ./scripts/exports.ts"
+		"exports": "bun run ./scripts/exports.ts",
+		"test": "vitest run",
+		"test:watch": "vitest"
 	},
 	"sideEffects": false,
 	"type": "module",
@@ -64,6 +66,9 @@
 		"consola": "^3.2.3",
 		"typedoc": "^0.27.9",
 		"typedoc-plugin-mdn-links": "^5.0.1",
-		"typescript": "^5.5.4"
+		"typescript": "^5.5.4",
+		"vitest": "^1.4.0",
+		"@vitest/coverage-v8": "^1.4.0",
+		"happy-dom": "^13.8.2"
 	}
 }
