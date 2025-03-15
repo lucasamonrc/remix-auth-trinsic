@@ -49,7 +49,9 @@
 		"./package.json": "./package.json"
 	},
 	"dependencies": {
+		"@mjackson/headers": "^0.10.0",
 		"@trinsic/api": "^2.0.0-alpha2",
+		"debug": "^4.4.0",
 		"react-router": "^7.3.0",
 		"remix-auth": "^4.0.0"
 	},
@@ -58,6 +60,7 @@
 		"@biomejs/biome": "^1.8.3",
 		"@total-typescript/tsconfig": "^1.0.4",
 		"@types/bun": "^1.1.6",
+		"@types/debug": "^4.1.12",
 		"consola": "^3.2.3",
 		"typedoc": "^0.27.9",
 		"typedoc-plugin-mdn-links": "^5.0.1",
