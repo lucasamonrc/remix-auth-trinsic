@@ -24,7 +24,8 @@
 			"suspicious": {
 				"noConsoleLog": "warn",
 				"noEmptyBlockStatements": "warn",
-				"noSkippedTests": "error"
+				"noSkippedTests": "error",
+				"noExplicitAny": "warn"
 			}
 		}
 	},
@@ -40,5 +41,8 @@
 			"include": ["**/*.md"],
 			"formatter": { "indentStyle": "tab" }
 		}
-	]
+	],
+	"files": {
+		"ignore": ["scripts/*.js", "vitest.config.ts"]
+	}
 }
