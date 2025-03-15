@@ -18,16 +18,14 @@ async function main() {
 
 	await new Promise((resolve, reject) => {
 		proc.on("close", (code) => {
-			if (code === 0) {
-				resolve();
-			} else {
-				reject(new Error(`Process exited with code ${code}`));
-			}
+			// Always resolve to continue processing
+			resolve();
 		});
 		proc.on("error", reject);
 	});
 
 	const text = stdout;
+	console.log("Raw attw output:", text);
 
 	const entrypointLines = text
 		.slice(text.indexOf('"remix-i18next/'))
