@@ -47,7 +47,7 @@
 		"./package.json": "./package.json"
 	},
 	"dependencies": {
-		"@mjackson/headers": "^0.10.0",
+		"@mjackson/headers": "^0.11.1",
 		"@trinsic/api": "^2.0.0-alpha2",
 		"debug": "^4.4.0",
 		"react-router": "^7.3.0",
